@@ -2,7 +2,7 @@
 // @name         Figma 中文化（界面汉化）
 // @name:en      Figma Chinese UI Translator
 // @namespace    https://github.com/figma-zh
-// @version      1.3.3
+// @version      1.4.2
 // @description  把 Figma 网页版（figma.com）的界面汉化为简体中文：工具栏、菜单、右键菜单、右侧属性面板、原型/开发模式、分享弹窗、文件浏览器、提示气泡、占位符等。内置离线词表（零请求），动态出现的内容自动补译；不改动画布里的设计内容和你的图层/文件名。
 // @description:en  Translate the Figma web app UI into Simplified Chinese with an offline dictionary and live DOM observation.
 // @author       Yujan
@@ -1046,6 +1046,56 @@
     'Layout guide settings': '布局参考线设置',
     'Layout guide type': '布局参考线类型',
     'Remove layout guide': '移除布局参考线',
+    'More options': '更多选项',
+    'What’s next?': '接下来做什么？',
+    'The button action for this text area changes between Send and Stop as the agent works.': '此文本区域的按钮操作会随智能体工作状态在“发送”和“停止”之间切换。',
+    'Add context': '添加上下文',
+    'Dictate': '语音输入',
+    'Microphone access required': '需要麦克风权限',
+    'To use voice input, you need to allow Figma to access your microphone.': '若要使用语音输入，你需要允许 Figma 访问你的麦克风。',
+    'To enable microphone access:': '启用麦克风权限的方法：',
+    'Click the lock or settings icon in your browser’s address bar': '点击浏览器地址栏中的锁形或设置图标',
+    'Find the microphone permission and change it to "Allow"': '找到麦克风权限并将其改为“允许”',
+    'Reload the page and try again': '重新加载页面后重试',
+    'Chat history': '聊天记录',
+    'Today': '今天',
+    'Not started': '未开始',
+    'Fill in missing states': '补全缺失状态',
+    'Add variations': '添加变体',
+    'Extend flow': '扩展流程',
+    'Improve roughest screen': '优化最粗糙的页面',
+    'Summarize page': '总结页面',
+    'Search all tools': '搜索所有工具',
+    'Clear search': '清除搜索',
+    'Filter by price and type': '按价格和类型筛选',
+    'Filter by source': '按来源筛选', 'Source': '来源',
+    'Filter by category': '按类别筛选', 'Category': '类别',
+    'Filter by category': '按类别筛选',
+    'No tools found': '未找到工具',
+    'No results found': '未找到结果',
+    'All sources': '所有来源',
+    'From Figma': '来自 Figma',
+    'Created by you': '你创建的',
+    'Content generation': '内容生成',
+    'Shaders': '着色器',
+    'Styling': '样式',
+    'Editing': '编辑',
+    'Format & resize': '格式与尺寸',
+    'Fun & creative': '趣味与创意',
+    'Product & brand': '产品与品牌',
+    'Prototyping & animation': '原型与动画',
+    'File organization': '文件管理',
+    'Import & export': '导入与导出',
+    'Accessibility tools': '无障碍工具',
+    'Hide panel': '隐藏面板',
+    'Variable collections': '变量集合',
+    'Collections': '集合',
+    'Collections options': '集合选项',
+    'Create collection': '创建集合',
+    'Minimize': '最小化',
+    'No variables created in this file': '此文件中尚未创建变量',
+    'Save colors, numbers, text, and states to reuse them in styles, prototypes, and across files.': '保存颜色、数字、文本和状态，以便在样式、原型和跨文件中复用。',
+    'Ex: "circle with a ? icon"': '例如：“带 ? 图标的圆形”',
   };
 
   // 建索引：精确 + 小写（应对 Figma 里首字母大写/全大写混用）
@@ -1190,7 +1240,7 @@
     'script', 'style', 'noscript', 'textarea', 'code', 'pre', 'kbd', 'samp', 'var',
     'canvas', 'svg', 'math', 'iframe', 'object', 'template',
     '[contenteditable="true"]', '[contenteditable=""]', '[contenteditable="plaintext-only"]',
-    '[data-figma-zh-skip]', '.notranslate', '[translate="no"]', '#figma-zh-toast',
+    '[data-figma-zh-skip]', '#figma-zh-toast',
   ].join(',');
 
   // 这些区域里的「文字」是用户内容（图层名 / 页面名）：只翻属性（aria-label、tooltip），不翻文本
@@ -1572,7 +1622,7 @@
 
   function registerMenu() {
     if (typeof GM_registerMenuCommand !== 'function') return;
-    const v = 'v1.3.3';
+    const v = 'v1.4.2';
     GM_registerMenuCommand('① 开启/关闭汉化（当前：' + (enabled ? '开' : '关') + '） · ' + v, () => {
       setEnabled(!enabled);
     });
@@ -1644,7 +1694,7 @@
     window.addEventListener('popstate', () => setTimeout(() => scan(document.body), 300));
     window.addEventListener('focus', () => { if (enabled) scan(document.body); });
 
-    console.log('%c[Figma中文化] 已加载 ' + 'v1.3.3' + '（' + (enabled ? '已开启' : '已关闭') + '）',
+    console.log('%c[Figma中文化] 已加载 ' + 'v1.4.2' + '（' + (enabled ? '已开启' : '已关闭') + '）',
       'color:#0d99ff;font-weight:bold');
   }
 
