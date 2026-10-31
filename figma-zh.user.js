@@ -2,7 +2,7 @@
 // @name         Figma 中文化（界面汉化）
 // @name:en      Figma Chinese UI Translator
 // @namespace    https://github.com/figma-zh
-// @version      1.6.0
+// @version      1.6.1
 // @description  把 Figma 网页版（figma.com）的界面汉化为简体中文：工具栏、菜单、右键菜单、右侧属性面板、原型/开发模式、分享弹窗、文件浏览器、提示气泡、占位符等。内置离线词表（零请求），动态出现的内容自动补译；不改动画布里的设计内容和你的图层/文件名。
 // @description:en  Translate the Figma web app UI into Simplified Chinese with an offline dictionary and live DOM observation.
 // @author       Yujan
@@ -1046,6 +1046,9 @@
     'Layout guide settings': '布局参考线设置',
     'Layout guide type': '布局参考线类型',
     'Remove layout guide': '移除布局参考线',
+    'Upload SKILL.md files or create from scratch, then type /skill-name in chat to use. You can publish them for others in your plan, too.': '上传 SKILL.md 文件或从零创建，然后在聊天中输入 /技能名 即可使用。你也可以发布给所在方案中的其他人使用。',
+    'No one has published any skills to': '还没有人向',
+    'yet. You can be the first to add one and publish for others to use.': '发布任何技能。你可以第一个添加并发布给其他人使用。',
     'More options': '更多选项',
     'What’s next?': '接下来做什么？',
     'The button action for this text area changes between Send and Stop as the agent works.': '此文本区域的按钮操作会随智能体工作状态在“发送”和“停止”之间切换。',
@@ -1182,6 +1185,10 @@
     [/^(\d+)\/(\d+) monthly$/i, (m) => `${m[1]}/${m[2]} 每月`],
     [/^(\d+)\/(\d+) daily credits used$/i, (m) => `已用 ${m[1]}/${m[2]} 每日额度`],
     [/^(\d+) available$/i, (m) => `可用 ${m[1]}`],
+    [/^(\d+)\s+credits?\s+left$/i, (m) => `剩余 ${m[1]} 个点数`],
+    [/^(\d+)\/(\d+)\s+daily\s+credits?\s+left$/i, (m) => `每日剩余 ${m[1]}/${m[2]} 个点数`],
+    [/^([\s\S]+?)\s+is a\s+([\s\S]+?)\s+plan, which comes with (\d+) credits a month and a (\d+)-per-day limit\. Your seat credits reset ([\s\S]+?)\.$/i, (m) => `${m[1]} 是${m[2]}套餐，每月包含 ${m[3]} 个点数，每日上限 ${m[4]} 个。你的席位点数将于 ${m[5]} 重置。`],
+    [/^No one has published any skills to\s+(.+?)\s+yet\. You can be the first to add one and publish for others to use\.$/i, (m) => `还没有人向${m[1]}发布任何技能。你可以第一个添加并发布给其他人使用。`],
     [/^Resets\s+(.+)$/i, (m) => `重置于 ${m[1]}`],
     [/^(\d+) files total across Design and Sites$/i, (m) => `Design 和 Sites 中共 ${m[1]} 个文件`],
     [/^Products included in (.+) seat$/i, (m) => `${dictGet(m[1]) || m[1]}席位包含的产品`],
@@ -1199,6 +1206,8 @@
     const trail = (raw.match(/\s*$/) || [''])[0];
     const core = raw.slice(lead.length, raw.length - trail.length);
     if (!core) return null;
+    // 键盘按键/单字母不要翻译（避免 W→宽、R→右、T→上、H→高、L→左）
+    if (/^(?:[A-Za-z]|Esc|Escape|Tab|Enter|Return|Shift|Control|Option|Command|Cmd|Alt|Delete|Backspace|Space|Home|End)$/.test(core)) return null;
     if (CJK_RE.test(core)) return null;          // 已经是中文，不重复处理
 
     const direct = dictGet(core);
@@ -1622,7 +1631,7 @@
 
   function registerMenu() {
     if (typeof GM_registerMenuCommand !== 'function') return;
-    const v = 'v1.6.0';
+    const v = 'v1.6.1';
     GM_registerMenuCommand('① 开启/关闭汉化（当前：' + (enabled ? '开' : '关') + '） · ' + v, () => {
       setEnabled(!enabled);
     });
@@ -1694,7 +1703,7 @@
     window.addEventListener('popstate', () => setTimeout(() => scan(document.body), 300));
     window.addEventListener('focus', () => { if (enabled) scan(document.body); });
 
-    console.log('%c[Figma中文化] 已加载 ' + 'v1.6.0' + '（' + (enabled ? '已开启' : '已关闭') + '）',
+    console.log('%c[Figma中文化] 已加载 ' + 'v1.6.1' + '（' + (enabled ? '已开启' : '已关闭') + '）',
       'color:#0d99ff;font-weight:bold');
   }
 
