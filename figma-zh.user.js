@@ -2,7 +2,7 @@
 // @name         Figma 中文化（界面汉化）
 // @name:en      Figma Chinese UI Translator
 // @namespace    https://github.com/figma-zh
-// @version      1.5.0
+// @version      1.6.0
 // @description  把 Figma 网页版（figma.com）的界面汉化为简体中文：工具栏、菜单、右键菜单、右侧属性面板、原型/开发模式、分享弹窗、文件浏览器、提示气泡、占位符等。内置离线词表（零请求），动态出现的内容自动补译；不改动画布里的设计内容和你的图层/文件名。
 // @description:en  Translate the Figma web app UI into Simplified Chinese with an offline dictionary and live DOM observation.
 // @author       Yujan
@@ -1622,7 +1622,7 @@
 
   function registerMenu() {
     if (typeof GM_registerMenuCommand !== 'function') return;
-    const v = 'v1.5.0';
+    const v = 'v1.6.0';
     GM_registerMenuCommand('① 开启/关闭汉化（当前：' + (enabled ? '开' : '关') + '） · ' + v, () => {
       setEnabled(!enabled);
     });
@@ -1694,7 +1694,7 @@
     window.addEventListener('popstate', () => setTimeout(() => scan(document.body), 300));
     window.addEventListener('focus', () => { if (enabled) scan(document.body); });
 
-    console.log('%c[Figma中文化] 已加载 ' + 'v1.5.0' + '（' + (enabled ? '已开启' : '已关闭') + '）',
+    console.log('%c[Figma中文化] 已加载 ' + 'v1.6.0' + '（' + (enabled ? '已开启' : '已关闭') + '）',
       'color:#0d99ff;font-weight:bold');
   }
 

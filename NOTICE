@@ -1,8 +1,6 @@
 Figma 中文化
 ============
 
-本项目的部分中文词表参考并合并自 figma-cn 项目：
-https://github.com/cooky-dance/figma-cn
-
-figma-cn 以 GNU General Public License v3.0 发布。
-本项目同样以 GNU General Public License v3.0 发布，并保留该来源说明。
+本项目的中文词表由 Figma 官方英文词典（englishDictionaryUrl）经本地机器翻译生成，
+术语与措辞参考 Sketch 官方中文界面（安装包内的 zh-Hans 本地化资源），并由人工规则校对。
+不包含第三方现成中文词典。

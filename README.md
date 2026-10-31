@@ -65,7 +65,7 @@ Edge Add-ons 版本即将上线，上线后可直接在商店搜索 **Figma 中�
 
 ## 词表来源
 
-部分界面译文参考并合并自 [figma-cn](https://github.com/cooky-dance/figma-cn)（GPL-3.0），详见 [NOTICE](NOTICE)。本项目同样以 GPL-3.0 发布。
+词表由 Figma 官方英文词典（`englishDictionaryUrl`）经本地机器翻译生成，术语参考 Sketch 官方中文界面，并辅以人工规则校对；不包含第三方现成中文词典。详见 [NOTICE](NOTICE)。
 
 ## 许可
 
