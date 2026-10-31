@@ -2,7 +2,7 @@
 // @name         Figma 中文化（界面汉化）
 // @name:en      Figma Chinese UI Translator
 // @namespace    https://github.com/figma-zh
-// @version      1.3.2
+// @version      1.3.3
 // @description  把 Figma 网页版（figma.com）的界面汉化为简体中文：工具栏、菜单、右键菜单、右侧属性面板、原型/开发模式、分享弹窗、文件浏览器、提示气泡、占位符等。内置离线词表（零请求），动态出现的内容自动补译；不改动画布里的设计内容和你的图层/文件名。
 // @description:en  Translate the Figma web app UI into Simplified Chinese with an offline dictionary and live DOM observation.
 // @author       Yujan
@@ -1035,6 +1035,17 @@
     "while offline haven't synced yet.": '所做的更改尚未同步。',
     'Open to sync': '打开以同步',
     'Later': '稍后',
+    'Libraries and settings': '组件库与设置',
+    'Stroke weight': '描边粗细',
+    'Connection issue affecting saving. Click for details.': '保存受到影响。点击查看详情。',
+    'Add stroke fill': '添加描边填充',
+    'Linear gradient': '线性渐变',
+    'Stroke align': '描边对齐',
+    'Advanced stroke settings': '高级描边设置',
+    'Individual strokes': '单独描边',
+    'Layout guide settings': '布局参考线设置',
+    'Layout guide type': '布局参考线类型',
+    'Remove layout guide': '移除布局参考线',
   };
 
   // 建索引：精确 + 小写（应对 Figma 里首字母大写/全大写混用）
@@ -1069,6 +1080,7 @@
     [/^(\d+) of (\d+) selected$/i, (m) => `已选 ${m[1]} / 共 ${m[2]}`],
     [/^This token will expire on (.+)\.$/i, (m) => `此令牌将于 ${m[1]} 过期。`],
     [/^(\d+)\s+components?$/i, (m) => `${m[1]} 个组件`],
+    [/^Grid (\d+px)$/i, (m) => `网格 ${m[1]}`],
     [/^(\d+)\s+selected$/i, (m) => `已选中 ${m[1]} 项`],
     [/^(\d+)\s+items?\s+selected$/i, (m) => `已选中 ${m[1]} 项`],
     [/^(\d+)\s+layers?$/i, (m) => `${m[1]} 个图层`],
@@ -1560,7 +1572,7 @@
 
   function registerMenu() {
     if (typeof GM_registerMenuCommand !== 'function') return;
-    const v = 'v1.3.2';
+    const v = 'v1.3.3';
     GM_registerMenuCommand('① 开启/关闭汉化（当前：' + (enabled ? '开' : '关') + '） · ' + v, () => {
       setEnabled(!enabled);
     });
@@ -1632,7 +1644,7 @@
     window.addEventListener('popstate', () => setTimeout(() => scan(document.body), 300));
     window.addEventListener('focus', () => { if (enabled) scan(document.body); });
 
-    console.log('%c[Figma中文化] 已加载 ' + 'v1.3.2' + '（' + (enabled ? '已开启' : '已关闭') + '）',
+    console.log('%c[Figma中文化] 已加载 ' + 'v1.3.3' + '（' + (enabled ? '已开启' : '已关闭') + '）',
       'color:#0d99ff;font-weight:bold');
   }
 
