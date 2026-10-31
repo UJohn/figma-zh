@@ -2,7 +2,7 @@
 // @name         Figma 中文化（界面汉化）
 // @name:en      Figma Chinese UI Translator
 // @namespace    https://github.com/figma-zh
-// @version      1.3.1
+// @version      1.3.2
 // @description  把 Figma 网页版（figma.com）的界面汉化为简体中文：工具栏、菜单、右键菜单、右侧属性面板、原型/开发模式、分享弹窗、文件浏览器、提示气泡、占位符等。内置离线词表（零请求），动态出现的内容自动补译；不改动画布里的设计内容和你的图层/文件名。
 // @description:en  Translate the Figma web app UI into Simplified Chinese with an offline dictionary and live DOM observation.
 // @author       Yujan
@@ -1007,6 +1007,34 @@
     'Snap to geometry enabled': '已启用对齐到几何',
     'Snap to objects enabled': '已启用对齐到对象',
     'Snap to pixel grid enabled': '已启用对齐到像素网格',
+    'Pixel grid visible': '像素网格可见',
+    'Pixel grid hidden': '像素网格隐藏',
+
+    /* —— 第七轮：组件库 / 变量 / 渐变 / 效果 / AI 智能体 / 离线条 —— */
+    'All libraries': '所有组件库',
+    'Search all libraries': '搜索所有组件库',
+    'Add more libraries': '添加更多组件库',
+    'Variable': '变量',
+    'Value': '值',
+    'Create variable': '创建变量',
+    'Gradient': '渐变',
+    'Stops': '色标',
+    'Noise': '噪点',
+    'Texture': '纹理',
+    'Glass': '玻璃',
+    'Shader': '着色器',
+    'New chat': '新对话',
+    'Shared': '共享',
+    "What's next?": '接下来做什么？',
+    'Tidy and polish': '整理与润色',
+    'Generate designs': '生成设计',
+    'Build with code': '用代码构建',
+    'Create plugins and shaders': '创建插件和着色器',
+    'Ask for changes': '请求修改',
+    'Changes you made to': '你在离线时对',
+    "while offline haven't synced yet.": '所做的更改尚未同步。',
+    'Open to sync': '打开以同步',
+    'Later': '稍后',
   };
 
   // 建索引：精确 + 小写（应对 Figma 里首字母大写/全大写混用）
@@ -1040,6 +1068,7 @@
     [/^Zoom to (\d+)%$/i, (m) => `缩放到 ${m[1]}%`],
     [/^(\d+) of (\d+) selected$/i, (m) => `已选 ${m[1]} / 共 ${m[2]}`],
     [/^This token will expire on (.+)\.$/i, (m) => `此令牌将于 ${m[1]} 过期。`],
+    [/^(\d+)\s+components?$/i, (m) => `${m[1]} 个组件`],
     [/^(\d+)\s+selected$/i, (m) => `已选中 ${m[1]} 项`],
     [/^(\d+)\s+items?\s+selected$/i, (m) => `已选中 ${m[1]} 项`],
     [/^(\d+)\s+layers?$/i, (m) => `${m[1]} 个图层`],
@@ -1531,7 +1560,7 @@
 
   function registerMenu() {
     if (typeof GM_registerMenuCommand !== 'function') return;
-    const v = 'v1.3.1';
+    const v = 'v1.3.2';
     GM_registerMenuCommand('① 开启/关闭汉化（当前：' + (enabled ? '开' : '关') + '） · ' + v, () => {
       setEnabled(!enabled);
     });
@@ -1603,7 +1632,7 @@
     window.addEventListener('popstate', () => setTimeout(() => scan(document.body), 300));
     window.addEventListener('focus', () => { if (enabled) scan(document.body); });
 
-    console.log('%c[Figma中文化] 已加载 ' + 'v1.3.1' + '（' + (enabled ? '已开启' : '已关闭') + '）',
+    console.log('%c[Figma中文化] 已加载 ' + 'v1.3.2' + '（' + (enabled ? '已开启' : '已关闭') + '）',
       'color:#0d99ff;font-weight:bold');
   }
 
