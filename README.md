@@ -32,7 +32,7 @@
 
 ### 浏览器扩展（推荐）
 
-Edge Add-ons 商店版本审核中，上线后可直接搜索 **Figma 中文汉化** 安装。
+Edge Add-ons 版本即将上线，上线后可直接在商店搜索 **Figma 中文汉化** 安装。
 
 在此之前，也可以从 [Releases](https://github.com/UJohn/figma-zh/releases/latest) 下载 `figma-zh-extension.zip`，解压后在 `edge://extensions` / `chrome://extensions` 打开「开发者模式」→「加载已解压的扩展程序」选择解压目录。
 
