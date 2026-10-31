@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Figma 中文汉化",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "把 Figma 网页版界面汉化为简体中文：菜单、面板、右键菜单、设置、分享、订阅等。离线词表，不联网，不改动画布内容。",
   "icons": {
     "16": "icons/16.png",

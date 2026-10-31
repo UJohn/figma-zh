@@ -63,6 +63,10 @@ Edge Add-ons 版本即将上线，上线后可直接在商店搜索 **Figma 中�
 - 画布上由 Canvas 绘制的文字（例如画板名称标签）无法通过浏览器扩展替换
 - 登录页、管理后台等部分页面可能尚未完全覆盖
 
+## 词表来源
+
+部分界面译文参考并合并自 [figma-cn](https://github.com/cooky-dance/figma-cn)（GPL-3.0），详见 [NOTICE](NOTICE)。本项目同样以 GPL-3.0 发布。
+
 ## 许可
 
 [GPL-3.0](LICENSE)

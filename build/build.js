@@ -26,7 +26,16 @@ function read(p) { return fs.readFileSync(p, 'utf8'); }
 function write(p, s) { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, s); }
 function copy(src, dst) { fs.mkdirSync(path.dirname(dst), { recursive: true }); fs.copyFileSync(src, dst); }
 
-const src = read(srcPath);
+let src = read(srcPath);
+const officialPath = path.join(root, 'data/official-zh.json');
+if (fs.existsSync(officialPath)) {
+  const official = read(officialPath);
+  if (!src.includes('const OFFICIAL_DICT =')) {
+    src = src.replace('  const RAW_DICT = {', '  const OFFICIAL_DICT = ' + official + ';\n  const RAW_DICT = {');
+    src = src.replace('  for (const k of Object.keys(RAW_DICT)) {', '  const MERGED = Object.assign({}, OFFICIAL_DICT, RAW_DICT);\n  for (const k of Object.keys(MERGED)) {');
+    src = src.replace('    const v = RAW_DICT[k];', '    const v = MERGED[k];');
+  }
+}
 const start = src.indexOf('// ==UserScript==');
 const endMarker = '// ==/UserScript==';
 const end = src.indexOf(endMarker);
