@@ -2,7 +2,7 @@
 // @name         Figma 中文化（界面汉化）
 // @name:en      Figma Chinese UI Translator
 // @namespace    https://github.com/figma-zh
-// @version      1.3.0
+// @version      1.3.1
 // @description  把 Figma 网页版（figma.com）的界面汉化为简体中文：工具栏、菜单、右键菜单、右侧属性面板、原型/开发模式、分享弹窗、文件浏览器、提示气泡、占位符等。内置离线词表（零请求），动态出现的内容自动补译；不改动画布里的设计内容和你的图层/文件名。
 // @description:en  Translate the Figma web app UI into Simplified Chinese with an offline dictionary and live DOM observation.
 // @author       Yujan
@@ -942,6 +942,71 @@
     'Subtract': '减去',
     'Intersect': '相交',
     'Exclude': '排除',
+    'Figma Design & Sites': 'Figma Design 与 Sites',
+
+    /* —— 第六轮：工作区/排序/2FA/令牌/分享/视图 —— */
+    'View members': '查看成员',
+    'View settings': '查看设置',
+    'Change icon': '更改图标',
+    'Delete...': '删除…',
+    'Delete…': '删除…',
+    'Alphabetical': '按字母顺序',
+    'Order': '顺序',
+    'Oldest first': '最早优先',
+    'Newest first': '最新优先',
+    'Upgrade to create more folders': '升级以创建更多文件夹',
+    'Unlimited on the Professional plan': '专业版中无限',
+
+    /* 双重验证 / 密码 */
+    'Set up two-factor authentication': '设置双重验证',
+    'For security purposes, please re-enter your password below.': '为了安全起见，请在下方重新输入密码。',
+    'Current password': '当前密码',
+    'New password': '新密码',
+    'Confirm password': '确认密码',
+    'Forgot password?': '忘记密码？',
+    'We sent an email to': '我们已向',
+    'with instructions to reset your password!': '发送邮件，内含重置密码的说明！',
+
+    /* 个人访问令牌 */
+    'A personal access token gives you access to the Figma API as if you were a single user.': '个人访问令牌让你能以单一用户身份访问 Figma API。',
+    'Token name': '令牌名称',
+    'Expiration': '过期时间',
+    'Scopes': '权限范围',
+    'Users': '用户',
+    "Read the current user's name, email, and profile image": '读取当前用户的姓名、邮箱和个人资料图片',
+    'Read comments in accessible files': '读取可访问文件中的评论',
+    'Create, modify, and delete comments in accessible files': '在可访问文件中创建、修改和删除评论',
+    'Read the contents of and render images from files': '读取文件内容并渲染文件中的图片',
+    'Read metadata of files': '读取文件的元数据',
+    'Read version history of files': '读取文件的版本历史',
+    'Design systems': '设计系统',
+    'Read data about individual components and styles': '读取单个组件和样式的数据',
+    'Read components and styles published from individual files': '读取从单个文件发布的组件和样式',
+    'Read components and styles published in team libraries': '读取团队库中发布的组件和样式',
+    'Development': '开发',
+    'Read and list dev resources in accessible files': '读取并列出可访问文件中的开发资源',
+    'Create and modify dev resources in accessible files': '在可访问文件中创建和修改开发资源',
+    'Generate token': '生成令牌',
+
+    /* 分享 / 协作 / 创建菜单 / 视图 */
+    'Share this board': '分享此画板',
+    'To invite people to edit, move this draft into your folders.': '要邀请他人编辑，请将此草稿移动到你的文件夹中。',
+    'Move file': '移动文件',
+    'Anyone': '任何人',
+    'Start open session': '开启开放会话',
+    'Anyone can edit—no account required. Sessions end automatically after 24 hours.': '任何人都可以编辑——无需账户。会话将在 24 小时后自动结束。',
+    'Start': '开始',
+    'Create Figma Slides outline': '创建 Figma Slides 大纲',
+    'Get everyone to follow you': '让大家跟随你',
+    'New FigJam': '新建 FigJam',
+    'Import...': '导入…',
+    'Export as...': '导出为…',
+    'Show dot grid': '显示点状网格',
+    'Resource use': '资源使用',
+    'Unlock all objects': '解锁所有对象',
+    'Snap to geometry enabled': '已启用对齐到几何',
+    'Snap to objects enabled': '已启用对齐到对象',
+    'Snap to pixel grid enabled': '已启用对齐到像素网格',
   };
 
   // 建索引：精确 + 小写（应对 Figma 里首字母大写/全大写混用）
@@ -974,6 +1039,7 @@
     [/^(Page|Frame|Group|Section|Slice|Component Set|Component|Instance|Rectangle|Ellipse|Line|Arrow|Polygon|Star|Vector|Text|Boolean Operation)\s+(\d+)$/i, (m) => `${dictGet(m[1]) || m[1]} ${m[2]}`],
     [/^Zoom to (\d+)%$/i, (m) => `缩放到 ${m[1]}%`],
     [/^(\d+) of (\d+) selected$/i, (m) => `已选 ${m[1]} / 共 ${m[2]}`],
+    [/^This token will expire on (.+)\.$/i, (m) => `此令牌将于 ${m[1]} 过期。`],
     [/^(\d+)\s+selected$/i, (m) => `已选中 ${m[1]} 项`],
     [/^(\d+)\s+items?\s+selected$/i, (m) => `已选中 ${m[1]} 项`],
     [/^(\d+)\s+layers?$/i, (m) => `${m[1]} 个图层`],
@@ -1465,7 +1531,7 @@
 
   function registerMenu() {
     if (typeof GM_registerMenuCommand !== 'function') return;
-    const v = 'v1.3.0';
+    const v = 'v1.3.1';
     GM_registerMenuCommand('① 开启/关闭汉化（当前：' + (enabled ? '开' : '关') + '） · ' + v, () => {
       setEnabled(!enabled);
     });
@@ -1537,7 +1603,7 @@
     window.addEventListener('popstate', () => setTimeout(() => scan(document.body), 300));
     window.addEventListener('focus', () => { if (enabled) scan(document.body); });
 
-    console.log('%c[Figma中文化] 已加载 ' + 'v1.3.0' + '（' + (enabled ? '已开启' : '已关闭') + '）',
+    console.log('%c[Figma中文化] 已加载 ' + 'v1.3.1' + '（' + (enabled ? '已开启' : '已关闭') + '）',
       'color:#0d99ff;font-weight:bold');
   }
 
