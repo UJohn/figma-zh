@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+dist/translation-backlog.*
+dist/*.zip
+store/screenshots/
+store/promo-440x280.png

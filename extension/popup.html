@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Figma 中文汉化</title>
+<style>
+  :root{color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;width:320px;background:#1e1e1e;color:#e8e8e8;font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .wrap{padding:16px}
+  h1{font-size:15px;margin:0 0 2px;font-weight:600}
+  .ver{font-size:11px;color:#8a8a8a;margin-bottom:14px}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid #333}
+  .label{font-size:13px}
+  .sub{font-size:11px;color:#8a8a8a;margin-top:2px}
+  .switch{position:relative;width:42px;height:24px;flex:0 0 auto}
+  .switch input{opacity:0;width:0;height:0}
+  .slider{position:absolute;inset:0;background:#555;border-radius:999px;transition:.2s;cursor:pointer}
+  .slider:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+  input:checked + .slider{background:#0d99ff}
+  input:checked + .slider:before{transform:translateX(18px)}
+  button{width:100%;margin-top:12px;padding:9px 10px;border:0;border-radius:8px;background:#0d99ff;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+  button.secondary{background:#333;color:#ddd;font-weight:500;margin-top:8px}
+  button:disabled{opacity:.5;cursor:default}
+  .status{padding:10px 12px;border-radius:8px;background:#2a2a2a;font-size:12px;color:#bbb;margin-top:6px}
+  .ok{color:#7ee2a8}
+  .warn{color:#ffb86b}
+  .foot{font-size:11px;color:#777;margin-top:12px;text-align:center}
+  a{color:#6cb6ff;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Figma 中文汉化</h1>
+  <div class="ver">v<span id="ver">-</span> · 离线词表</div>
+
+  <div class="row">
+    <div>
+      <div class="label">启用中文界面</div>
+      <div class="sub" id="stateSub">正在检测…</div>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle" disabled>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="status" id="status">请在 figma.com 页面使用。</div>
+
+  <button id="rescan" disabled>重新扫描当前页</button>
+  <button class="secondary" id="closeBtn">关闭</button>
+  <div class="foot">GPL-3.0 · 不联网、不收集数据</div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
