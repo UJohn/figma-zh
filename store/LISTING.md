@@ -5,7 +5,9 @@
 - 版本：1.3.0
 - 分类：开发者工具 / 生产工具
 - 语言：简体中文
-- 许可：GPL-3.0（商店须同时提供源代码地址）
+- 许可：GPL-3.0
+- 源码：https://github.com/UJohn/figma-zh
+- 隐私政策：https://ujohn.github.io/figma-zh/privacy.html
 
 ## 短描述（≤132 字符）
 把 Figma 网页版界面汉化为简体中文：菜单、面板、右键菜单、设置、分享与订阅页。离线词表，不联网。
